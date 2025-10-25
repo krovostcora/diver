@@ -67,8 +67,9 @@ import Fish from "./Fish.js";
     pondContainer.addChild(waterOverlay);
 
     // create and add player so it renders on top of overlay
-    Fish(pondContainer, app);
-    createPlayer(pondContainer, app);
+    const player = await createPlayer(pondContainer, app);
+    Fish(pondContainer, app, player);
+
 
     app.ticker.add(() => {
         waterOverlay.tilePosition.x += 0.5;
