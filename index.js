@@ -32,8 +32,6 @@ import Fish from "./Fish.js";
         `https://pixijs.com/assets/pond/displacement_BG.jpg`,
         `https://pixijs.com/assets/pond/overlay.png`,
         `https://pixijs.com/assets/pond/displacement_map.png`,
-        `https://pixijs.com/assets/pond/displacement_fish1.png`,
-        `https://pixijs.com/assets/pond/displacement_fish2.png`,
     ]);
 
     await Assets.load('/img_1.png');
