@@ -7,7 +7,7 @@ import {
     Sprite,
     TilingSprite,
 } from 'pixi.js';
-import createPlayer from './CharacterUI.js';
+import createPlayer from './CreatePlayer.js';
 import Fish from "./Fish.js";
 
 (async () => {
