@@ -7,17 +7,17 @@ export default function Fish(container, app) {
     for (let i = 0; i < fishCount; i++) {
         const fish = new Graphics();
 
-        // Малюємо кружечок — рибка 🙂
-        fish.beginFill(0x00aaff);
-        fish.drawCircle(0, 0, 15);
+        const color = Math.random() * 0xffffff;
+
+        fish.beginFill(color);
+        fish.drawCircle(0, 0, Math.random() * 15 + 10); // різний розмір рибок
         fish.endFill();
 
-        // Рандомне розташування
         fish.x = Math.random() * app.screen.width;
         fish.y = Math.random() * app.screen.height;
 
-        // Рандомна швидкість та напрямок
-        fish.speed = (Math.random() * 2 + 1) * (Math.random() < 0.5 ? 1 : -1);
+        fish.speed = Math.random() * 1.5 + 0.5;
+        fish.direction = Math.random() < 0.5 ? 1 : -1;
 
         container.addChild(fish);
         fishes.push(fish);
