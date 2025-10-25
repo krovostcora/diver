@@ -8,6 +8,7 @@ import {
     TilingSprite,
 } from 'pixi.js';
 import createPlayer from './CharacterUI.js';
+import Fish from "./Fish.js";
 
 (async () => {
     const app = new Application();
@@ -66,6 +67,7 @@ import createPlayer from './CharacterUI.js';
     pondContainer.addChild(waterOverlay);
 
     // create and add player so it renders on top of overlay
+    Fish(pondContainer, app);
     createPlayer(pondContainer, app);
 
     app.ticker.add(() => {
