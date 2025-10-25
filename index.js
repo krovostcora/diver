@@ -36,8 +36,8 @@ import Fish from "./Fish.js";
         `https://pixijs.com/assets/pond/displacement_fish2.png`,
     ]);
 
-    await Assets.load('/img.png');
-    const bgTex = Assets.get('/img.png');
+    await Assets.load('/img_1.png');
+    const bgTex = Assets.get('/img_1.png');
     const background = new Sprite(bgTex);
 
     // fit background to app.screen
