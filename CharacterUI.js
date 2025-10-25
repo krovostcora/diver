@@ -5,6 +5,7 @@ export default async function createPlayer(container, app) {
     const pngback = await Assets.load('back.png');
     const pngleft = await Assets.load('left.png');
     const pngright = await Assets.load('right.png');
+
     const player = new Sprite(pngfront);
 
     player.width = 70;
@@ -21,15 +22,41 @@ export default async function createPlayer(container, app) {
     window.addEventListener('keydown', (e) => {
         keys[e.key.toLowerCase()] = true;
     });
+
     window.addEventListener('keyup', (e) => {
         keys[e.key.toLowerCase()] = false;
     });
 
     app.ticker.add(() => {
-        if (keys['w']) player.y -= speed;
-        if (keys['s']) player.y += speed;
-        if (keys['a']) player.x -= speed;
-        if (keys['d']) player.x += speed;
+        let moved = false;
+
+        // W — back
+        if (keys['w']) {
+            player.y -= speed;
+            player.texture = pngback;
+            moved = true;
+        }
+
+        // S — front
+        if (keys['s']) {
+            player.y += speed;
+            player.texture = pngfront;
+            moved = true;
+        }
+
+        // A — left side
+        if (keys['a']) {
+            player.x -= speed;
+            player.texture = pngleft;
+            moved = true;
+        }
+
+        // D — right side
+        if (keys['d']) {
+            player.x += speed;
+            player.texture = pngright;
+            moved = true;
+        }
 
         player.x = Math.max(0, Math.min(app.screen.width - player.width, player.x));
         player.y = Math.max(0, Math.min(app.screen.height - player.height, player.y));
