@@ -1,33 +1,29 @@
-// javascript
-// `index.js`
-import {
-    Application,
-    Assets,
-    Container,
-    Sprite,
-    TilingSprite,
-} from 'pixi.js';
+import { Application, Assets, Container, Sprite, TilingSprite } from 'pixi.js';
 import createPlayer from './CreatePlayer.js';
-import Fish from "./Fish.js";
+import Fish from './Fish.js';
 
+/**
+ * Bootstraps Pixi app, background, water overlay, GLB diver and fish.
+ */
 (async () => {
+    // Init Pixi
     const app = new Application();
     await app.init({ width: 1450, height: 1000, antialias: true });
 
+    // Attach canvas
     document.body.appendChild(app.canvas);
     app.canvas.style.position = 'absolute';
 
+    // Center canvas on screen
     const centerCanvas = () => {
         app.canvas.style.top = `${(window.innerHeight - app.canvas.height) / 2}px`;
         app.canvas.style.left = `${(window.innerWidth - app.canvas.width) / 2}px`;
     };
+
     centerCanvas();
+    window.addEventListener('resize', centerCanvas);
 
-    window.addEventListener('resize', () => {
-        centerCanvas();
-        // if you resize the renderer you can update overlay/bg sizing here
-    });
-
+    // Load assets
     await Assets.load([
         `https://pixijs.com/assets/pond/displacement_BG.jpg`,
         `https://pixijs.com/assets/pond/overlay.png`,
@@ -36,23 +32,24 @@ import Fish from "./Fish.js";
 
     await Assets.load('/img_1.png');
     const bgTex = Assets.get('/img_1.png');
+
+    // Background sprite
     const background = new Sprite(bgTex);
 
-    // fit background to app.screen
     const screenW = app.screen.width;
     const screenH = app.screen.height;
     const texW = background.texture.width;
     const texH = background.texture.height;
-    const texRatio = texW / texH;
-    const screenRatio = screenW / screenH;
 
-    if (texRatio > screenRatio) {
+    // Fit background to canvas
+    if (texW / texH > screenW / screenH) {
         background.height = screenH;
-        background.width = background.height * texRatio;
+        background.width = background.height * (texW / texH);
     } else {
         background.width = screenW;
-        background.height = background.width / texRatio;
+        background.height = background.width / (texW / texH);
     }
+
     background.x = (screenW - background.width) / 2;
     background.y = (screenH - background.height) / 2;
 
@@ -60,15 +57,18 @@ import Fish from "./Fish.js";
     pondContainer.addChild(background);
     app.stage.addChild(pondContainer);
 
-    const overlayTex = Assets.get('https://pixijs.com/assets/pond/overlay.png');
-    const waterOverlay = new TilingSprite(overlayTex, app.screen.width, app.screen.height);
+    // Water overlay
+    const overlayTex = Assets.get(`https://pixijs.com/assets/pond/overlay.png`);
+    const waterOverlay = new TilingSprite(overlayTex, screenW, screenH);
     pondContainer.addChild(waterOverlay);
 
-    // create and add player so it renders on top of overlay
+    // Add GLB diver
     const player = await createPlayer(pondContainer, app);
+
+    // Add fish
     Fish(pondContainer, app, player);
 
-
+    // Animate water layer
     app.ticker.add(() => {
         waterOverlay.tilePosition.x += 0.5;
         waterOverlay.tilePosition.y += 0.5;

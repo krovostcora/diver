@@ -1,11 +1,33 @@
 <!doctype html>
-<html>
+<html lang="en">
 <head>
+    <!-- Page metadata -->
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Pixi App</title>
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Diver — Pixi + Three</title>
+
+    <!-- Basic reset + background styling -->
+    <style>
+        html, body {
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            background: #000013; /* deep water color */
+            font-family: sans-serif;
+        }
+
+        /* Canvas centering fallback if JS fails */
+        canvas {
+            display: block;
+            margin: auto;
+        }
+    </style>
 </head>
+
 <body>
+<!-- Main entry script -->
 <script type="module" src="/index.js"></script>
 </body>
 </html>
