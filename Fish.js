@@ -12,11 +12,11 @@ export default async function Fish(container, app, player) {
 
     // Fish sprite config
     const fishData = [
-        { path: 'png_fish/1fish.png', flipLeft: true,  flipRight: false },
-        { path: 'png_fish/2fish.png', flipLeft: false, flipRight: true },
-        { path: 'png_fish/3fish.png', flipLeft: false, flipRight: true },
-        { path: 'png_fish/4fish.png', flipLeft: true,  flipRight: false },
-        { path: 'png_fish/5fish.png', flipLeft: false, flipRight: true },
+        { path: './png_fish/1fish.png', flipLeft: true,  flipRight: false },
+        { path: './png_fish/2fish.png', flipLeft: false, flipRight: true },
+        { path: './png_fish/3fish.png', flipLeft: false, flipRight: true },
+        { path: './png_fish/4fish.png', flipLeft: true,  flipRight: false },
+        { path: './png_fish/5fish.png', flipLeft: false, flipRight: true },
     ];
 
     // Load textures

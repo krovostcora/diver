@@ -40,7 +40,7 @@ export default async function createPlayer(container, app) {
     const loader = new GLTFLoader();
 
     loader.load(
-        'public/diver.glb',
+        `${import.meta.env.BASE_URL}diver.glb`,
         (gltf) => {
             diver = gltf.scene;
 

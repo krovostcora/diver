@@ -30,8 +30,8 @@ import Fish from './Fish.js';
         `https://pixijs.com/assets/pond/displacement_map.png`,
     ]);
 
-    await Assets.load('/img_1.png');
-    const bgTex = Assets.get('/img_1.png');
+    await Assets.load('./img_1.png');
+    const bgTex = Assets.get('./img_1.png');
 
     // Background sprite
     const background = new Sprite(bgTex);
